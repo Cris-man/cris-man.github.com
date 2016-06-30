@@ -7,6 +7,7 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
 	function show(json){
+		console.log(json);
 		wx.config({
 			debug: true,
 			appId: 'wx7142132f17019133', // 必填，公众号的唯一标识
@@ -15,11 +16,12 @@
 			signature:json.signature,// 必填，签名，见附录1
 			jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 		});	
-		
+	window.onload=function(){
 		wx.ready(function(){
 			
-			var oBtn=document.querySelector('#oBtn');
+			var oBtn=document.getElementById('oBtn');
 			
+			alert(oBtn);
 			oBtn.onclick=function(){
 				wx.onMenuShareTimeline({
 					title: '哈哈哈', // 分享标题
@@ -37,7 +39,7 @@
 			
 		});
 	}
-
+}
 	
 </script>
 <script src="http://www.itstrive.com/weixin/cc.php"></script>
