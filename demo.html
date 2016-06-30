@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+<title>无标题文档</title>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	function show(json){
+		console.log(json);
+		wx.config({
+			debug: true,
+			appId: 'wx7142132f17019133', // 必填，公众号的唯一标识
+			timestamp:json.time, // 必填，生成签名的时间戳
+			nonceStr: 'abc', // 必填，生成签名的随机串
+			signature:json.signature,// 必填，签名，见附录1
+			jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});	
+	window.onload=function(){
+		wx.ready(function(){
+			
+			var oBtn=document.getElementById('oBtn');
+			
+			alert(oBtn);
+			oBtn.onclick=function(){
+				wx.chooseImage({
+					count: 1, // 默认9
+					sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+					success: function (res) {
+						var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+							alert(localIds)
+					}
+				});
+			}
+			
+		});
+	}
+}
+	
+</script>
+<script src="http://www.itstrive.com/weixin/cc.php"></script>
+</head>
+
+<body>
+	<input id="oBtn" type="button" value="选择图片" />
+</body>
+</html>
